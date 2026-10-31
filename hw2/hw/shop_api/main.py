@@ -1,11 +1,13 @@
 from typing import Annotated
 
 from fastapi import FastAPI, HTTPException, Query, Response
+from prometheus_fastapi_instrumentator import Instrumentator
 
 from shop_api.schemas import ItemData, ItemPatch
 
 
 app = FastAPI(title="Shop API")
+Instrumentator(excluded_handlers=["/metrics"]).instrument(app).expose(app)
 
 # Пока храним данные в словарях. После остановки сервера они пропадут.
 items = {}
