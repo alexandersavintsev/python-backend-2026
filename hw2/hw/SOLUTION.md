@@ -1,19 +1,13 @@
-# ДЗ2: API магазина
+# API магазина с хранением в БД
 
-Реализованы ручки товаров и корзин из README. Данные хранятся в словарях в памяти
-одного процесса. Это разрешено условиями ДЗ2. После перезапуска сервера данные
-пропадают; хранение в БД добавлено отдельно в ветке hw4.
+Это продолжение ДЗ2. В ветках hw2/hw3 используется память процесса,
+а в этой ветке данные уже сохраняются через SQLAlchemy (задание ДЗ4).
 
-Из корня репозитория:
+Из корня установите `python -m pip install -r hw2/hw/requirements.txt`.
+Локальный запуск из hw2/hw:
+`python -m uvicorn shop_api.main:app --host 127.0.0.1 --port 28000 --reload`.
 
-```powershell
-conda activate python-backend
-python -m pip install -r hw2/hw/requirements.txt
-cd hw2/hw
-python -m uvicorn shop_api.main:app --host 127.0.0.1 --port 28000 --reload
-```
-
-Документация API: http://127.0.0.1:28000/docs.
-В другом терминале из hw2/hw: `python -m pytest test_homework2.py -v`.
-
-Исходные тесты преподавателя не изменены. Дополнительный WebSocket-чат не реализован.
+Без переменной SHOP_DATABASE_URL создаётся файл hw2/hw/shop.db (SQLite).
+В Docker используется PostgreSQL. Инструкция ДЗ4: docs/HW4.md.
+Исходные тесты из hw2/hw: `python -m pytest test_homework2.py -v`.
+Дополнительный WebSocket-чат не реализован.
